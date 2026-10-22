@@ -117,11 +117,6 @@ async function send() {
   const text = question.value.trim();
   if (!text) return;
 
-  if (APP_TOKEN.includes("Alex2026-token-8kQ2wY7tR4")) {
-    addMessage("assistant", "Falta configurar APP_TOKEN. Abre este archivo y pega en la línea const APP_TOKEN el mismo valor que guardaste en Vercel (Settings → Environment Variables → APP_TOKEN). No es el dominio ni la clave de DeepSeek.");
-    return;
-  }
-
   history.push({ role: "user", text });
   save();
   addMessage("user", text);
@@ -161,7 +156,7 @@ async function send() {
   } catch (error) {
     console.error("Diagnóstico del error:", error);
     if (error.name === "TypeError") {
-      answer.textContent = "Fallo de red o CORS. Revisa: 1) que abras la página desde https://tatsuyamx1.github.io/... (no desde tu computadora), 2) que ORIGEN_PERMITIDO en api/chat.js sea exactamente https://tatsuyamx1.github.io sin barra al final, 3) que el último deploy de Vercel diga Ready.";
+      answer.textContent = "Fallo de red o CORS. Revisa: 1) que abras la página desde https://tatsuyamx1.github.io/... (no desde tu computadora), 2) que ORIGEN_PERMITIDO en server.js sea exactamente https://tatsuyamx1.github.io sin barra al final, 3) que el servicio de Render esté Live (la primera respuesta tras inactividad puede tardar un minuto).";
     } else {
       answer.textContent = "Error: " + error.message;
     }
@@ -191,10 +186,5 @@ document.getElementById("clear").addEventListener("click", () => {
 
 render();
 </script>
-</body>
-</html>
-
-    mostrarHistorial();
-  </script>
 </body>
 </html>
